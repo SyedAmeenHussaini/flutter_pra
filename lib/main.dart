@@ -20,12 +20,13 @@ class Myapp extends StatelessWidget {
          
 
       ),
+      debugShowCheckedModeBanner: false,
       darkTheme:ThemeData(
       brightness: Brightness.dark
       ),
-      initialRoute: "/login",
+      initialRoute: "/homeRout",
      routes:{
-       "/":(context) => LoginPage(),
+       "/":(context) => Homepage(),
        MyRoutes.homeRout :(context) => Homepage(),
        MyRoutes.loginRout:(context) => LoginPage(),
 
