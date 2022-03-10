@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_catalog/pages/login_page.dart';
 import 'package:flutter_catalog/pages/Home_page.dart';
 import 'package:flutter_catalog/pages/utilits/approut.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_catalog/pages/widegts/theme.dart';
+
 void main() {
   runApp(Myapp());
 }
@@ -13,24 +14,21 @@ class Myapp extends StatelessWidget {
     return MaterialApp(
      
       themeMode:ThemeMode.light,
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-        fontFamily: GoogleFonts.lato().fontFamily
-        
-         
-
-      ),
+      theme: MyTheme.lightTheme(context),
+      darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      darkTheme:ThemeData(
-      brightness: Brightness.dark
-      ),
+
+     
       initialRoute: "/homeRout",
      routes:{
-       "/":(context) => Homepage(),
+       "/":(context) => LoginPage(),
        MyRoutes.homeRout :(context) => Homepage(),
        MyRoutes.loginRout:(context) => LoginPage(),
 
      } ,      
     );
   }
+
+
+  
 }

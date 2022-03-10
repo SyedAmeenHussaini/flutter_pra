@@ -10,7 +10,7 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("MiracleApp"),
+          title: Text("MiracleApp",style: TextStyle(color: Colors.black),),
         ),
         body : Center(
       child: Container(child: Text("welcome android developer")
