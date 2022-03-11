@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/models/catalog.dart';
 
 import 'package:flutter_catalog/pages/widegts/drawer.dart';
+import 'package:flutter_catalog/pages/widegts/item_widget.dart';
+
 
 class Homepage extends StatelessWidget {
   final int = 30;
@@ -9,14 +12,22 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("MiracleApp",style: TextStyle(color: Colors.black),),
+      appBar: AppBar(
+        title: Text(
+          "MiracleApp",
+          style: TextStyle(color: Colors.black),
         ),
-        body : Center(
-      child: Container(child: Text("welcome android developer")
       ),
-    ),
-     drawer: MyDrawer(),
+      body: ListView.builder(
+        itemCount: CatalogModel.items.length,
+        itemBuilder:(context, index){
+          return ItemWidget(item: CatalogModel.items[index],);
+        } ),
+
+
+
+      drawer: MyDrawer(),
     );
   }
 }
+
