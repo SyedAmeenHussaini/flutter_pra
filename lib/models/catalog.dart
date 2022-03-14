@@ -1,15 +1,5 @@
 class CatalogModel {
-  static final items = [
-  Item(
-      id: 1,
-      name: "Iphone 13 pro max",
-      desc: "apple iphone 12 pro 128gb ",
-      price: 999,
-      color: "White",
-      image:
-          "https://cdn.shopify.com/s/files/1/0568/5942/7015/products/MLL73HN_A_1_d6032f81-1128-4f00-acaf-96a90cc31384.png?v=1632371352")
-];
-
+  static List<Item> items = [];
 }
 
 class Item {
@@ -27,5 +17,23 @@ class Item {
       required this.price,
       required this.color,
       required this.image});
-}
 
+  factory Item.fromMap(Map<String, dynamic> map) {
+    return Item(
+      id: map["id"],
+      name: map["name"],
+      desc: map["desc"],
+      price: map["price"],
+      color: map["color"],
+      image: map["image"],
+    );
+  }
+  toMap() => {
+        "id": id,
+        "name": name,
+        "desc": desc,
+        "price": price,
+        "color": color,
+        "image": image
+      };
+}
