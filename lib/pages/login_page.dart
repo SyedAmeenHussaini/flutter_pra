@@ -1,8 +1,9 @@
 import "package:flutter/material.dart";
-import 'package:flutter_catalog/pages/Home_page.dart';
 import 'package:flutter_catalog/pages/utilits/approut.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -16,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         changeButton = true;
       });
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
       await Navigator.pushNamed(context, MyRoutes.homeRoute);
       setState(() {
         changeButton = false;
@@ -37,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
                 "assest/images/login_page.png",
                 fit: BoxFit.cover,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
                 child: Text(
                   "Hey",
@@ -48,8 +49,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Text("Welcome $name",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-              SizedBox(
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              const SizedBox(
                 height: 10,
               ),
               Padding(
@@ -58,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           hintText: "Enter Username", labelText: "UserName"),
                       validator: (value) {
                         if (value != null && value.isEmpty) {
@@ -73,6 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     TextFormField(
                       obscureText: true,
+                      // ignore: prefer_const_constructors
                       decoration: InputDecoration(
                           hintText: "Enter Password", labelText: "Password"),
                       validator: (value) {
@@ -85,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                     ),
 
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Material(
@@ -95,16 +97,16 @@ class _LoginPageState extends State<LoginPage> {
                       child: InkWell(
                         onTap: () => moveToHome(context),
                         child: AnimatedContainer(
-                          duration: Duration(seconds: 1),
+                          duration: const Duration(seconds: 1),
                           width: changeButton ? 40 : 110,
                           height: 40,
                           alignment: Alignment.center,
                           child: changeButton
-                              ? Icon(
+                              ? const Icon(
                                   Icons.done,
                                   color: Colors.white,
                                 )
-                              : Text(
+                              : const Text(
                                   "login",
                                   style: TextStyle(
                                       color: Colors.white,

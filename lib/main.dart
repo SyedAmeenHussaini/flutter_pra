@@ -10,11 +10,13 @@ void main() {
 }
 
 class Myapp extends StatelessWidget {
+  const Myapp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
      
-      themeMode:ThemeMode.light,
+      themeMode:ThemeMode.system,
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
@@ -22,9 +24,9 @@ class Myapp extends StatelessWidget {
      
       initialRoute: "/homeRout",
      routes:{
-       "/":(context) => LoginPage(),
+       "/":(context) => const Homepage(),
        MyRoutes.homeRoute :(context) => const Homepage(),
-       MyRoutes.loginRoute:(context) => LoginPage(),
+       MyRoutes.loginRoute:(context) => const LoginPage(),
        MyRoutes.cartRoute:(context) => const CartPage()
 
      } ,      
