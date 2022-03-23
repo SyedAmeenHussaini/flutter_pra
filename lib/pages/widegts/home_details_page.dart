@@ -13,7 +13,9 @@ class HomeDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       bottomNavigationBar: Container(
         color: Colors.white,
                 child: ButtonBar(
@@ -33,7 +35,7 @@ class HomeDetailPage extends StatelessWidget {
                       child: "Buy".text.xl.make(),
                     ).wh(80, 40)
                   ],
-                ).pOnly(right: 8.0).p32(),
+                ).pOnly(right: 8.0).p24(),
       )
       ,
       body: 
@@ -44,7 +46,7 @@ class HomeDetailPage extends StatelessWidget {
             child: Image.network(catalog.image).h40(context)),
         Expanded(
             child: VxArc(
-          height: 32, 
+          height: 30, 
           arcType: VxArcType.CONVEY,
           edge: VxEdge.TOP,
           
@@ -58,10 +60,14 @@ class HomeDetailPage extends StatelessWidget {
                       .bold
                       .xl3
                       .make(),
-                      catalog.desc.text.textStyle(TextStyle()).xl.make(),
+                      catalog.desc.text.textStyle(TextStyle()).extraBlack.center.xl.make(),
                     10.heightBox,
+                    
+                    "Super Retina XDR Display, 6.1 inch (Diagonal) All Screen OLED Display, HDR Display, True Tone, Wide Colour (P3), Haptic Touch, 2000000:1 Contrast Ratio (Typical), 625 nits Max Brightness (Typical); 1200 nits Max Brightness (HDR)"
+                    .text.textStyle(TextStyle()).color(Colors.black87).xl.make(),
+                    
                 ],
-              ).py64()),
+              ).py24()),
         ))
       ]),
     );
