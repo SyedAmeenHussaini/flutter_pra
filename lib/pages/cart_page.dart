@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/core/store.dart';
 import 'package:flutter_catalog/models/cart.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -17,29 +18,36 @@ class CartPage extends StatelessWidget {
         children: [
           CartList().p32().expand(),
           const Divider(),
-          const CartTotal()
+          const _CartTotal()
         ],
       ),
     );
   }
 }
 
-class CartTotal extends StatelessWidget {
-  const CartTotal({Key? key}) : super(key: key);
+class _CartTotal extends StatelessWidget {
+  const _CartTotal({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _cart = CartModel();
+    final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 150,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$${_cart.totalPrice}"
-              .text.bold
+         VxConsumer( 
+           builder: (context, store, status) =>   "\$${_cart.totalPrice}"
+              .text
+              .bold
               .xl4
               .color(context.theme.hintColor)
               .make(),
+              mutations: {RemoveMutation},
+              notifications: {},
+        
+         
+         ),
           ElevatedButton(
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -54,37 +62,24 @@ class CartTotal extends StatelessWidget {
   }
 }
 
-class CartList extends StatefulWidget {
-  const CartList({Key? key}) : super(key: key);
-
-  
-
-  @override
-  State<CartList> createState() => CartListState();
-}
-
-class CartListState extends State<CartList> {
-  final cart = CartModel();
+class CartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return cart.items.isEmpty
+    VxState.watch(context, on: [RemoveMutation]);
+    final CartModel _cart = (VxState.store as MyStore).cart;
+    return _cart.items.isEmpty
         ? "Nothing to show".text.xl5.makeCentered()
         : ListView.builder(
-            itemCount: cart.items.length,
-            
+            itemCount: _cart.items.length,
             itemBuilder: (context, index) => ListTile(
-              leading:  const Icon(Icons.done),
+              leading: const Icon(Icons.done),
               trailing: IconButton(
-                icon:  const Icon(Icons.remove_circle_outline_outlined),
+                icon: const Icon(Icons.remove_circle_outline_outlined),
                 onPressed: () async {
-                  cart.remove(cart.items[index]);
-                  setState(() {
-                  });
-                    
-                  
+                  RemoveMutation(_cart.items[index]);
                 },
               ),
-              title: cart.items[index].name.text.make(),
+              title: _cart.items[index].name.text.make(),
             ),
           );
   }
