@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/models/catalog.dart';
 import 'package:flutter_catalog/pages/widegts/add_to_cart.dart';
+import 'package:flutter_catalog/pages/widegts/drawer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomeDetailPage extends StatelessWidget {
+  
   final Item catalog;
+
   // ignore: unnecessary_null_comparison
   const HomeDetailPage({Key? key, required this.catalog})
       : assert(catalog != null),
@@ -13,7 +16,9 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
@@ -27,8 +32,10 @@ class HomeDetailPage extends StatelessWidget {
                   AddToCart(catalog: catalog,).wh(80, 40)
                   ],
                 ).pOnly(right: 8.0).p24(),
-      )
-      ,
+                 
+      ),
+      
+
       body: 
       Column(children: [
         Hero(
@@ -60,6 +67,7 @@ class HomeDetailPage extends StatelessWidget {
               ).py24()),
         ))
       ]),
+
     );
   }
 }

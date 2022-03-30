@@ -6,6 +6,7 @@ import 'package:flutter_catalog/models/cart.dart';
 import 'package:flutter_catalog/models/catalog.dart';
 import 'package:flutter_catalog/pages/utilits/approut.dart';
 import 'package:flutter_catalog/pages/widegts/add_to_cart.dart';
+import 'package:flutter_catalog/pages/widegts/drawer.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
@@ -31,6 +32,7 @@ class CatalogList extends StatelessWidget {
                 ),
             child: CatalogItem(catalog: catalog));
       },
+      
     );
   }
 }
@@ -77,6 +79,7 @@ class CatalogItem extends StatelessWidget {
         ],
       ),
     ).white.rounded.square(150).make().py16();
+   
   }
 }
 
