@@ -13,6 +13,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 import '../widgets/catalog_list.dart';
 import '../widgets/home_widegt/catalog_header.dart';
+import 'package:http/http.dart' as http;
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -36,8 +37,8 @@ class _HomepageState extends State<Homepage> {
 
   loadData() async {
     await Future.delayed(const Duration(seconds: 2));
-    var catalogJson = await rootBundle.loadString("assest/files/catalog.json");
-    var decodedData = jsonDecode(catalogJson);
+    final  catalogJson = await rootBundle.loadString("assest/files/catalog.json");
+    final decodedData = jsonDecode(catalogJson);
     var productsData = decodedData["products"];
     CatalogModel.items = List.from(productsData)
         .map<Item>((item) => Item.fromMap(item))

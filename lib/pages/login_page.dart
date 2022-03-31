@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:flutter_catalog/pages/utilits/approut.dart';
 import 'package:flutter_catalog/pages/widegts/drawer.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
         changeButton = true;
       });
       await Future.delayed(const Duration(seconds: 1));
-      await Navigator.pushNamed(context, MyRoutes.homeRoute);
+      await context.vxNav.push(Uri.parse(MyRoutes.homeRoute));
       setState(() {
         changeButton = false;
       });
@@ -51,7 +52,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Text("Welcome $name",
-                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                  style: const TextStyle(
+                      fontSize: 24, fontWeight: FontWeight.bold)),
               const SizedBox(
                 height: 10,
               ),

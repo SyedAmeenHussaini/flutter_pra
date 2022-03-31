@@ -22,17 +22,13 @@ class CatalogList extends StatelessWidget {
       itemBuilder: (context, index) {
         final catalog = CatalogModel.items[index];
         return InkWell(
-            onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomeDetailPage(
-                      catalog: catalog,
-                    ),
-                  ),
-                ),
+            onTap: () => context.vxNav.push(
+                Uri(
+                    path: MyRoutes.homeDetailsRoute,
+                    queryParameters: {"id": catalog.id}),
+                params: catalog),
             child: CatalogItem(catalog: catalog));
       },
-      
     );
   }
 }
@@ -79,7 +75,5 @@ class CatalogItem extends StatelessWidget {
         ],
       ),
     ).white.rounded.square(150).make().py16();
-   
   }
 }
-
