@@ -47,24 +47,27 @@ class HomeDetailPage extends StatelessWidget {
           arcType: VxArcType.CONVEY,
           edge: VxEdge.TOP,
           
-          child: Container(
-              color: Colors.white,
-              width: context.screenWidth,
-              child: Column(
-                children: [
-                  catalog.name.text.lg
-                      .color(Theme.of(context).primaryColorDark)
-                      .bold
-                      .xl3
-                      .make(),
-                      catalog.desc.text.textStyle(TextStyle()).extraBlack.center.xl.make(),
-                    10.heightBox,
-                    
-                    "Super Retina XDR Display, 6.1 inch (Diagonal) All Screen OLED Display, HDR Display, True Tone, Wide Colour (P3), Haptic Touch, 2000000:1 Contrast Ratio (Typical), 625 nits Max Brightness (Typical); 1200 nits Max Brightness (HDR)"
-                    .text.textStyle(TextStyle()).color(Colors.black87).xl.make(),
-                    
-                ],
-              ).py24()),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 0),
+            child: Container(
+                color: Colors.white,
+                width: context.screenWidth,
+                child: Column(
+                  children: [
+                    catalog.name.text.lg
+                        .color(Theme.of(context).primaryColorDark)
+                        .bold
+                        .xl3
+                        .make(),
+                        catalog.desc.text.textStyle(TextStyle()).extraBlack.center.xl.make(),
+                      10.heightBox,
+                      
+                      "Super Retina XDR Display, 6.1 inch (Diagonal) All Screen OLED Display, HDR Display, True Tone, Wide Colour (P3), Haptic Touch, 2000000:1 Contrast Ratio (Typical), 625 nits Max Brightness (Typical); 1200 nits Max Brightness (HDR)"
+                      .text.textStyle(TextStyle()).color(Colors.black87).xl.make(),
+                      
+                  ],
+                ).py24()),
+          ),
         ))
       ]),
 

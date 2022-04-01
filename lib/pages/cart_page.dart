@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/core/store.dart';
 import 'package:flutter_catalog/models/cart.dart';
+import 'package:flutter_catalog/pages/utilits/approut.dart';
 import 'package:flutter_catalog/pages/widegts/drawer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -22,7 +23,7 @@ class CartPage extends StatelessWidget {
           const _CartTotal()
         ],
       ),
-      );
+    );
   }
 }
 
@@ -37,26 +38,26 @@ class _CartTotal extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-         VxConsumer( 
-           builder: (context, store, status) =>   "\$${_cart.totalPrice}"
-              .text
-              .bold
-              .xl4
-              .color(context.theme.hintColor)
-              .make(),
-              mutations: {RemoveMutation},
-              notifications: {},
-        
-         
-         ),
+          VxConsumer(
+            builder: (context, store, status) => "\$${_cart.totalPrice}"
+                .text
+                .bold
+                .xl4
+                .color(context.theme.hintColor)
+                .make(),
+            mutations: {RemoveMutation},
+            notifications: {},
+          ),
           ElevatedButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: "Buy not valid yet".text.make()));
+                  onPressed: () async { 
+                 await   Future.delayed(const Duration(seconds: 2));
+                    context.vxNav.push(Uri.parse(MyRoutes.homeRoute));
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: "Orederd".text.make()));
                   },
                   style: TextButton.styleFrom(backgroundColor: Colors.purple),
                   child: "Buy".text.color(Colors.white).make())
-              .w24(context)
+              .w24(context),
         ],
       ),
     );
