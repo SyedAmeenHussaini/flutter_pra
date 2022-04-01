@@ -34,8 +34,9 @@ class Myapp extends StatelessWidget {
      routerDelegate: VxNavigator(routes:{
         "/":(_,__) =>  const MaterialPage(child: LoginPage()),
         MyRoutes.homeRoute :(_,__) => const MaterialPage(child: Homepage()),
-         MyRoutes.homeDetailsRoute :(Uri,params) {
-           final catalog= (VxState.store as MyStore).catalog.getById(int.parse(Uri.queryParameters["id"].toString()));
+         MyRoutes.homeDetailsRoute :(uri,params) {
+           final catalog= (VxState.store as MyStore).catalog.getById(int.parse(uri.queryParameters["id"].toString()));
+          
            return MaterialPage(child: HomeDetailPage(
            catalog:catalog ,
            ));

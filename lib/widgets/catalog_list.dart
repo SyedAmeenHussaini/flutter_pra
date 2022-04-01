@@ -25,7 +25,7 @@ class CatalogList extends StatelessWidget {
             onTap: () => context.vxNav.push(
                 Uri(
                     path: MyRoutes.homeDetailsRoute,
-                    queryParameters: {"id": catalog.id}),
+                    queryParameters: {"id": catalog.id.toString()}),
                 params: catalog),
             child: CatalogItem(catalog: catalog));
       },
