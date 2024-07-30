@@ -1,20 +1,94 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class Homepage extends StatelessWidget {
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_catalog/core/store.dart';
+import 'package:flutter_catalog/models/cart.dart';
+import 'package:flutter_catalog/models/catalog.dart';
+import 'package:flutter_catalog/pages/utilits/approut.dart';
+import 'package:flutter_catalog/pages/widegts/drawer.dart';
+
+import 'package:velocity_x/velocity_x.dart';
+
+import '../widgets/catalog_list.dart';
+import '../widgets/home_widegt/catalog_header.dart';
+import 'package:http/http.dart' as http;
+
+class Homepage extends StatefulWidget {
+  const Homepage({Key? key}) : super(key: key);
+
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
   final int = 30;
+
   final String = 'miracle';
 
   @override
+  void initState() {
+    // ignore: todo
+    // TODO: implement initState
+    super.initState();
+    loadData();
+  }
+
+  loadData() async {
+    await Future.delayed(const Duration(seconds: 2));
+    final  catalogJson = await rootBundle.loadString("assest/files/catalog.json");
+    final decodedData = jsonDecode(catalogJson);
+    var productsData = decodedData["products"];
+    CatalogModel.items = List.from(productsData)
+        .map<Item>((item) => Item.fromMap(item))
+        .toList();
+
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final _cart = (VxState.store as MyStore).cart;
     return Scaffold(
-        appBar: AppBar(
-          title: Text("MiracleApp"),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        floatingActionButton: VxBuilder(
+          mutations: const {AddMutation, RemoveMutation},
+          builder: ((context, store, status) => FloatingActionButton(
+                onPressed: () {
+                  context.vxNav.push(Uri.parse(MyRoutes.cartRoute));
+                },
+                backgroundColor: Colors.redAccent,
+                child: const Icon(CupertinoIcons.cart),
+                splashColor: Colors.black,
+              ).badge(
+                  color: Vx.gray300,
+                  size: 22,
+                  count: _cart.items.length,
+                  textStyle: const TextStyle(
+                    color: Colors.black38,
+                    fontWeight: FontWeight.bold,
+                  ))),
         ),
-        body : Center(
-      child: Container(child: Text("welcome android developer")
-      ),
-    ),
-     drawer: Drawer(),
-    );
+        body: SafeArea(
+          child: Container(
+            padding: Vx.m32,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CatalogHeader(),
+                if (CatalogModel.items.isNotEmpty)
+                  CatalogList().expand()
+                else
+                  const CircularProgressIndicator().centered().py16().expand(),
+              ],
+            ),
+          ),
+        ),
+        drawer: MyDrawer(),
+        appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.black87),
+          backgroundColor: Colors.transparent,
+        ));
   }
 }
